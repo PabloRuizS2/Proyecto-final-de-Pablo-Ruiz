@@ -64,6 +64,7 @@ http://127.0.0.1:8000/login/ - Formulario para realizar el login
 
 http://127.0.0.1:8000/register/ - Formulario de Registro
 
-
+#link de video de muestra de como funciona la pagina
+https://drive.google.com/drive/folders/1MzJQPXyJC7aznphYquYVLbRpsmYHM5ZY?usp=sharing
 
      

@@ -1,0 +1,41 @@
+{% extends 'perfilesapp/base.html' %}
+{% load static %} 
+
+{% block tituloPagina %} 
+Editar Socios
+{% endblock %} 
+
+{% block about %} 
+<div>
+    <p class="justify-content-center">
+        <h1 style="color:white" > 
+            <br>
+            <br>
+            Editar Socio
+            <br>
+            <br>
+        </h1>
+    </p>
+</div>
+{% endblock %} 
+
+{% block servicios %} 
+
+<div style="text-align:center">  
+    <section class="bg-light py-5">
+        <form action="" method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <p>Nombre:  {{form.nombre}} </p>
+            <p>Apellido: {{form.apellido}}</p>
+            <p>Edad: {{form.edad}} </p>
+            <p>Email: {{form.email}}</p>
+            <p>Fecha de Nacimiento: {{form.fechanacimiento}}</p>
+
+            <a href="{% url 'socios' %}"><button class="btn btn-outline-dark">Editar Socio</button></a>
+        </form>
+    </section>
+</div>
+
+{% endblock %} 

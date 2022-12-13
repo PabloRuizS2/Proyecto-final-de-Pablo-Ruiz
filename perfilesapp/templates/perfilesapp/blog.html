@@ -1,0 +1,69 @@
+{% extends 'perfilesapp/base.html' %}
+{% load static %} 
+
+{% block tituloPagina %} 
+Blog
+{% endblock %} 
+
+{% block about %} 
+<div>
+    <p class="justify-content-center">
+        <h1 style="color:white" >
+            <br>
+            <br>
+            Blog
+            <br>
+            <br>
+        </h1>
+    </p>
+</div>
+{% endblock %} 
+
+{% block servicios %} 
+
+
+<section class="bg-light py-5">
+    <div class="container px-5">
+
+            {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                    <a class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" href="{% url 'crear_blog' %}"> <i class="bi bi-plus-lg"></i> Ingresar nueva entrada al Blog</a>
+                {% endif %}
+            {% endif %}  
+       
+        <br>
+        <br>
+
+        <div class="container">
+            <div class="row g-10">
+                {% for blog in blogs %}
+                    <div class="col-4">
+                        <div class="card">
+                            {% if blog.imagen %}  
+                                <div class="padre">
+                                    <img class="card-img-top" src="{{blog.imagen.url}}" class="card-img-top" >
+                                </div>
+                            {% endif %}
+                            <div class="card-body">
+                                <h4 class="card-title">{{blog.titulo}}</h4>
+                                <p class="card-text"> {{blog.user}}, {{blog.fecha}}</p>
+                                <span class="col-md-auto"><a href="{% url 'blog_detail' blog.id %}"><button type="button" class="btn btn-outline-dark">Ver mas</button></a></span>
+                            </div>
+                        </div>
+
+
+                        {% if user.is_authenticated %}
+                            {% if user.is_staff %}
+                                <span class="col-md-auto"><a href="{% url 'editar_blog' blog.id %}"><button type="button" class="btn btn-sm btn-success">Editar</button></a></span>
+                                <span class="col-md-auto"><a href="{% url 'eliminar_blog' blog.id %}"><button type="button" class="btn btn-sm btn-danger">Eliminar</button></a></span>
+                            {% endif %}  
+                        {% endif %}  
+                    </div>
+       
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

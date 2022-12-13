@@ -1,0 +1,34 @@
+{% extends 'perfilesapp/base.html' %}
+{% load static %}
+
+{% block tituloPagina %} 
+Ingreso de Productos
+{% endblock %} 
+
+{% block about %}
+<div>
+    <p>
+        <h1 style="color:white">
+            <br>
+            <br>
+            Ingreso de Productos
+            <br>
+            <br>
+        </h1>
+    </p>
+</div>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+
+    <p>Producto: <input type="text" name="producto" maxlength="30"></p>
+    <p>Descripcion: <input type="text" name="descripcion" maxlength="50"></p>
+    <p>Precio: <input type="number" name="precio" min="18"></p>
+    <p>Imagen: {{form.imagen.label}} 
+                    {{form.imagen}}
+    </p>
+    
+
+    <button type="submit">Agregar</button>
+</form>
+{% endblock %} 

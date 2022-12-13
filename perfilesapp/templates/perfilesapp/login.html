@@ -1,0 +1,40 @@
+{% extends 'perfilesapp/base.html' %}
+{% load static %} 
+
+{% block tituloPagina %} 
+Login
+{% endblock %} 
+
+
+{% block contenidoPagina %} 
+
+{% endblock %} 
+
+{% block about %} 
+<div>
+    <p class="justify-content-center">
+        <br>
+        <br>
+        <h1 style="color:white">
+            Inicia Sesión
+        </h1>
+        <br>
+        <br>
+
+        <form action="" method="post">
+
+            {% csrf_token %}
+            {{form.as_p}}
+            
+            <br>
+        
+            <button class="btn btn-outline-dark" type="submit">Inicia Sesión</button>
+
+            <br>
+            <br>
+        </form>
+
+    </p>
+</div>
+
+{% endblock %} 

@@ -1,0 +1,41 @@
+{% extends 'perfilesapp/base.html' %}
+{% load static %} 
+
+{% block tituloPagina %} 
+Editar Profesores
+{% endblock %} 
+
+{% block about %}
+<div>
+    <p class="justify-content-center">
+        <h1 style="color:white" > 
+            <br>
+            <br>
+            Editar Instructor
+            <br>
+            <br>
+        </h1>
+    </p>
+</div>
+{% endblock %} 
+
+{% block servicios %}
+
+<div style="text-align:center">  
+    <section class="bg-light py-5">     
+        <form action="" method="post">
+
+            {% csrf_token %}
+
+            <p>Nombre:   {{form.nombreprofesor}} </p>
+            <p>Apellido: {{form.apellidoprofesor}}</p>
+            <p>Edad: {{form.edadprofesor}} </p>
+            <p>Email: {{form.emailprofesor}}</p>
+        
+            <a href="{% url 'profesores' %}"><button class="btn btn-outline-dark">Editar Profesor</button></a>
+        
+        </form>
+    </section>
+</div>
+
+{% endblock %} 

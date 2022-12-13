@@ -1,0 +1,40 @@
+{% extends 'perfilesapp/base.html' %}
+{% load static %} 
+
+{% block tituloPagina %} 
+Editar Blog
+{% endblock %} 
+
+{% block about %} 
+<div>
+    <p class="justify-content-center">
+        <br>
+        <br>
+        <h1 style="color:white" > 
+        Editar Blog
+        </h1>
+        <br>
+        <br>
+    </p>
+</div>
+{% endblock %} 
+
+{% block servicios %} 
+
+<div style="text-align:center">  
+
+    <section class="bg-light py-5">
+        <div class="container px-100">
+
+        <form action="" method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            {{form.as_p}}
+        
+            <a href="{% url 'blog' %}"><button>Editar Blog</button></a>
+        </form>
+    </section>
+</div>
+
+{% endblock %} 

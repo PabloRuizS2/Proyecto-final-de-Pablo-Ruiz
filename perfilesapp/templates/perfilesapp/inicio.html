@@ -1,0 +1,38 @@
+{% extends 'perfilesapp/base.html' %}
+{% load static %} 
+
+{% block tituloPagina %} 
+Bienvenidos
+{% endblock %} 
+
+
+{% block contenidoPagina %} 
+<div>
+    <p class="justify-content-center">
+        <h1 style="color:white"> 
+            <img src="{% static 'assets/img/portfolio/fullsize/bote2.jpeg' %}" alt="Imagen código" height="100%" width="100%"> 
+        </h1>
+    </p>
+</div>
+
+{% endblock %} 
+
+{% block about %} 
+<div>
+    <p class="justify-content-center">
+        <br>
+        <br>
+        <h2 style="color:white">
+            Kayak: Un deporte para disfrutar
+        </h2>
+        <br>
+        <br>
+        <h3 style="color:white" align="justify">  
+            El Kayak es un deporte para disfrutar, desde la práctica recreativa hasta la competencia olímpica. Un deporte de bajo y alto impacto, en contacto con la naturaleza y con distancia social. 
+            Sumate a esta aventura!
+        </h3>
+        <br>
+        <br>
+    </p>
+</div>
+{% endblock %} 

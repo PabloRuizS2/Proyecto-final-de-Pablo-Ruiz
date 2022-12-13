@@ -1,0 +1,66 @@
+{% extends 'perfilesapp/base.html' %}
+{% load static %} 
+
+{% block tituloPagina %} 
+Editar Perfil
+{% endblock %} 
+
+
+{% block contenidoPagina %} 
+
+{% endblock %} 
+
+{% block about %} 
+<div>
+    <p class="justify-content-center">
+        <br>
+        <br>
+        <h1 style="color:white" > 
+            Edita tu perfil
+        </h1>
+        <br>
+        <br>
+    </p>
+</div>
+{% endblock %} 
+
+{% block servicios %} 
+<div>
+    <section class="bg-light py-5">
+        <div class="container px-5">
+            <br>
+            <br>
+            <h5 class="text-center">Estas editando al usuario "{{user.username}}":</h5>
+            <br>
+            <br>
+            <div class="container">
+                <div class="row g-10">
+                    <div class="col-12 col-md-6 col-lg-2">
+                    <div class="card">
+                        <img class="card-img-top" src="{{url}}" class="card-img-top" alt="no hay imagen cargada">
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:center">  
+                <a href="{% url 'crear_avatar' %}"><button class="btn btn-outline-dark">Agregar Imagen</button></a>
+                <a href="{% url 'editar_avatar' %}"><button class="btn btn-outline-dark">Editar Imagen</button></a>
+
+            </div>
+            <br>
+            <br>
+            <form action="" method="post" class="text-center">
+                {% csrf_token %}
+                {{form.as_p}}
+                <br>
+                <br>
+                <button class="btn btn-outline-dark" type="submit">Guardar</button>
+                <br>
+                <br>
+            </form>
+          
+        </div>
+    </section>
+</div>
+
+{% endblock %} 

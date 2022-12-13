@@ -1,0 +1,114 @@
+{% extends 'perfilesapp/base.html' %}
+{% load static %} 
+
+{% block tituloPagina %} 
+Cursos
+{% endblock %} 
+
+{% block about %} 
+<div>
+    <p class="justify-content-center">
+        
+        <br>
+        <br>
+        <h1 style="color:white" >
+            
+            Nuestros Cursos
+
+        </h1>
+        <br>
+        <br>
+    </p>
+</div>
+{% endblock %} 
+
+{% block servicios %} 
+
+
+<div>
+    <section class="bg-light py-5">
+        <div class="container px-5">
+            
+            <form action="" method="post" class="text-center">
+                {% csrf_token %}
+                <input type="search" name="search" placeholder="Buscar por curso" aria-label="search">
+                <button class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" type="submit"> <i class="bi bi-search"></i> Buscar</button>
+
+                {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                        <a class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" href="{% url 'crear_curso' %}"> <i class="bi bi-plus-lg"></i> Ingresar nuevo Curso</a>
+                    {% endif %}
+                {% endif %}
+
+            </form>
+           
+            <br>
+            <br>
+            <div style="text-align:right">  
+                <a href="{% url 'tienda' %}"><button class="btn btn-outline-dark">Volver a Tienda</button></a>
+            </div>
+
+            <h4 class="text-center">
+                Resultados
+                {% if search %}
+                    para "{{busqueda}}":
+                {% else %}
+                    totales:
+                {% endif %}
+            </h4>  
+
+            <br>
+            <br>
+               
+                <div class="container">
+                    <div class="row g-10">
+                        {% for curso in cursos %}
+                            <div class="col-4">
+                                <div class="card">
+                                    {% if curso.imagen %}  
+                                        <div class="padre"><img class="card-img-top" src="{{curso.imagen.url}}" class="card-img-top" ></div>
+                                    {% endif %}
+                                    <div class="card-body">
+                                    <h4 class="card-title">{{curso.actividad}}</h4>
+                                    <p class="card-text"> Profesor: {{curso.profesor}}
+                                                        <br>
+                                                        Días: {{curso.dias}}
+                                                        <br>
+                                                        Turno: {{curso.turno}}
+                                    </p>
+                                    <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"> ${{curso.precio}}</li>
+                                    
+                                    </ul>
+                                    </div>
+                                </div>
+                    
+
+                            {% if user.is_authenticated %}
+                                {% if user.is_staff %}
+                                    <span class="col-md-auto"><a href="{% url 'editar_curso' curso.id %}"><button type="button" class="btn btn-sm btn-success">Editar</button></a></span>
+                                    <span class="col-md-auto"><a href="{% url 'eliminar_curso' curso.id %}"><button type="button" class="btn btn-sm btn-danger">Eliminar</button></a></span>
+                                {% endif %}  
+                            {% endif %}  
+                            <br>
+                            <br>
+                        </div>
+                        {% endfor %}
+                    
+                        
+                    </div>
+                </div>
+
+            <br>
+            <br>
+
+            <div style="text-align:right">  
+                <a href="{% url 'tienda' %}"><button class="btn btn-outline-dark">Volver a Tienda</button></a>
+            </div>
+         
+        </div>
+    </section>
+    
+</div>
+
+{% endblock %} 

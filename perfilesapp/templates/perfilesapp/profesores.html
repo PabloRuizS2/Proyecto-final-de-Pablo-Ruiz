@@ -1,0 +1,99 @@
+{% extends 'perfilesapp/base.html' %}
+{% load static %} 
+
+{% block tituloPagina %} 
+Instructores
+{% endblock %} 
+
+{% block about %} 
+<div>
+    <p class="justify-content-center">
+        <h1 style="color:white" > 
+            <br>
+            <br>
+            Nuestros Instructores
+            <br>
+            <br>
+        </h1>
+    </p>
+</div>
+{% endblock %} 
+
+{% block servicios %} 
+<div>
+    <section class="bg-light py-5">
+        <div class="container px-lg-5">
+            <form action="" method="post" class="text-center">
+                {% csrf_token %}
+       
+                <input type="search" name="search" placeholder="Buscar por nombre o apellido" aria-label="search">
+                <button class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" type="submit"> <i class="bi bi-search"></i> Buscar</button>
+
+                {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                        <a class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" href="{% url 'crear_profesor' %}"> <i class="bi bi-plus-lg"></i> Ingresar nuevo Instructor</a>
+                    {% endif %}
+                {% endif %}
+       
+            </form>
+            <br>
+            <br>
+            
+            <h4 class="text-center">
+                Resultados
+                {% if search %}
+                    para "{{busqueda}}":
+                {% else %}
+                    totales:
+                {% endif %}
+            </h4>          
+            <div class="row gx-5 justify-content-center">
+            <div class="col-lg-10">
+            <br>
+            <br>
+
+            <ul class="list-group list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                            
+                    <b class="col-md-auto">Nombre del profesor</b>   <!-- Encabezados-->
+                    <b class="col-md-auto">Apellido</b>
+                    <b class="col-md-auto">Edad</b>
+                    <b class="col-md-auto">Email</b>
+
+                    {% if user.is_authenticated %}
+                        {% if user.is_staff %}
+                            <b class="col-md-auto">Editar</b>
+                            <b class="col-md-auto">Eliminar</b>
+                        {% endif %}
+                    {% endif %}
+                </li>
+
+                {% for profesor in profesores %}
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+
+                        <span class="col-md-auto">{{profesor.nombreprofesor}}</span>
+                        <span class="col-md-auto">{{profesor.apellidoprofesor}}</span>
+                        <span class="col-md-auto">{{profesor.edadprofesor}}</span>
+                        <span class="col-md-auto">{{profesor.emailprofesor}}</span>
+
+                        {% if user.is_authenticated %}
+                            {% if user.is_staff %}
+                                <span class="col-md-auto"><a href="{% url 'editar_profesor' profesor.id %}"><button type="button" class="btn btn-sm btn-success">Editar</button></a></span>
+                                <span class="col-md-auto"><a href="{% url 'eliminar_profesor' profesor.id %}"><button type="button" class="btn btn-sm btn-danger">Eliminar</button></a></span>
+                            {% endif %}
+                        {% endif %}
+                                
+                    </li>
+               
+                {% endfor %}
+                
+            </ul>
+            <br>
+            <div style="text-align:right">  
+                <a href="{% url 'nosotros' %}"><button class="btn btn-outline-dark">Volver a Nosotros</button></a>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

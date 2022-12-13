@@ -1,0 +1,44 @@
+{% extends 'perfilesapp/base.html' %}
+{% load static %} 
+
+{% block tituloPagina %} 
+Agregar Imagen
+{% endblock %} 
+
+
+{% block contenidoPagina %} 
+
+{% endblock %} 
+
+{% block about %} 
+<div>
+    <p class="justify-content-center">
+        <br>
+        <br>
+        <h1 style="color:white" > 
+            Avatar
+        </h1>
+        <br>
+        <br>
+    </p>
+</div>
+{% endblock %} 
+
+{% block servicios %} 
+<div>
+    <section class="bg-light py-5">
+        <div class="container px-5">
+            <form action="" method="POST" enctype="multipart/form-data" class="text-center">
+                {% csrf_token %}
+                {{form.as_p}}
+                <br>
+        
+                <button class="secondary" type="submit">Guardar</button>
+
+            </form>
+            <br>
+        </div>
+    </section>
+</div>
+
+{% endblock %} 

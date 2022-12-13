@@ -1,0 +1,62 @@
+{% extends 'perfilesapp/base.html' %}
+{% load static %} 
+
+{% block tituloPagina %} 
+Ingreso Curso
+{% endblock %} 
+
+{% block about %} 
+<div>
+    <p class="justify-content-center">
+        <h1 style="color:white" > 
+            <br>
+            <br>
+            Ingresar nuevo Curso
+            <br>
+            <br>
+        </h1>
+    </p>
+</div>
+{% endblock %} 
+
+{% block servicios %} 
+
+
+<div style="text-align:center">  
+    <section class="bg-light py-5">
+        <form action="" method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <p>Actividad: 
+                <select name="actividad">
+                    <option value="0" selected></option>
+                    <option value="Curso Individual">Curso Individual</option>
+                    <option value="Curso para dos">Curso para dos</option>
+                    <option value="Curso para cuatro">Curso para cuatro</option>
+                    <option value="Salida en Trainera">Salida en Trainera</option>
+                </select>
+            </p>
+    
+            <p>Profesor: <input type="text" name="profesor" maxlength="30"></p>
+            <p>Dias: <input type="text" name="dias" min="18"></p>
+            <p>Turno: 
+                <select name="turno">
+                    <option value="0" selected></option>
+                    <option value="Mañana">Mañana</option>
+                    <option value="Tarde">Tarde</option>
+                </select>
+            </p>
+            <p>Precio: <input type="number" name="precio"></p>
+            <p>Imagen: {{form.imagen.label}}
+
+                <img src="{cursos.imagen.url}}" width="100" alt=""> 
+                            
+                {{form.imagen}}</p>
+
+            <input type="submit" value="Agregar">
+        </form>
+    </section>
+</div>
+
+{% endblock %} 

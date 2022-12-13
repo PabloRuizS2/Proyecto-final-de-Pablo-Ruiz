@@ -1,0 +1,45 @@
+{% extends 'perfilesapp/base.html' %}
+{% load static %} 
+
+{% block tituloPagina %} 
+Ingresar nueva Publicacion
+{% endblock %} 
+
+{% block about %} 
+<div>
+    <p class="justify-content-center">
+        <h1 style="color:white" > 
+            <br>
+            <br>
+            Ingresar nueva Publicacion
+            <br>
+            <br>
+        </h1>
+    </p>
+</div>
+{% endblock %} 
+
+{% block servicios %} 
+
+<div style="text-align:center">  
+    <section class="bg-light py-5">
+        <form action="" method="POST" enctype="multipart/form-data" class="text-center">
+            {% csrf_token %}
+            <p>Título: <input type="text" name="titulo" maxlength="50" placeholder="Escribe un Titulo"></p>
+            <p>Subtítulo: <input type="text" name="subtitulo" maxlength="30" placeholder="Escribe un Subtitulo"></p>
+            <p>Texto: <input type="text" name="texto" maxlength="5000" placeholder="Contenido"></p>
+            <p>Imagen: {{form.imagen}} </p>
+            <p>Autor: {{blog.user}} </p>
+            <p>Fecha: {{form.fecha}}</p>
+
+            <br>
+    
+            <button class="secondary" type="submit">Guardar</button>
+
+        </form>
+</section>
+</div>
+
+{% endblock %} 
+
+

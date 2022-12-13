@@ -1,0 +1,63 @@
+{% extends 'perfilesapp/base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Tienda
+{% endblock %}
+
+{% block about %}
+<div>
+    <p class="justify-content-center">
+    <h1 style="color:white">
+        <br>
+        <br>
+        Tienda
+        <br>
+        <br>
+    </h1>
+    </p>
+</div>
+{% endblock %}
+
+{% block servicios %}
+<div>
+    <section class="bg-light py-5">
+        <div style="text-align:center">
+            <div class="container">
+                <div class="row g-10">
+                    <div class="col-4">
+
+                        <div class="card">
+                            <div class="padre"><img class="card-img-top" src="/media/objetos/cursos.png" src="/media/objetos/productos.png" class="card-img-top">
+                                <a href="{% url 'cursos' %}"><button class="btn btn-outline-dark">Nuestros Cursos</button></a>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                            <div class="card">
+                                <div class="padre"><img class="card-img-top" src="/media/objetos/productos.png" class="card-img-top">
+                                    <a href="{% url 'objetos' %}"><button class="btn btn-outline-dark">Nuestros Productos</button></a>
+                       
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>    
+        </div>  
+
+                 
+    </section>
+</div>
+{% endblock %}
+
+
+{% comment %}
+<div class="padre"><img class="card-img-top" src="/media/objetos/cursos.png" src="/media/objetos/productos.png" class="card-img-top">
+    <a href="{% url 'cursos' %}"><button class="btn btn-outline-dark">Nuestros Cursos</button></a>
+
+
+<div class="padre"><img class="card-img-top" src="/media/objetos/productos.png" class="card-img-top">
+    <a href="{% url 'objetos' %}"><button class="btn btn-outline-dark">Nuestros Productos</button></a>
+
+{% endcomment %}

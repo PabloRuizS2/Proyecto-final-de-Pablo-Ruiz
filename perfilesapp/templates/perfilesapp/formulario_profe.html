@@ -1,0 +1,41 @@
+{% extends 'perfilesapp/base.html' %}
+{% load static %} 
+
+{% block tituloPagina %} 
+Ingreso Profesores
+{% endblock %} 
+
+{% block about %} 
+<div>
+    <p class="justify-content-center">
+        <h1 style="color:white" > 
+            <br>
+            <br>
+            Ingresar nuevo Instructor
+            <br>
+            <br>
+        </h1>
+    </p>
+</div>
+{% endblock %} 
+
+{% block servicios %} 
+
+<div style="text-align:center">  
+    <section class="bg-light py-5">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <p>Nombre: <input type="text" name="nombreprofesor" maxlength="30"></p>
+            <p>Apellido: <input type="text" name="apellidoprofesor" maxlength="30"></p>
+            <p>Edad: <input type="number" name="edadprofesor" min="18"></p>
+            <p>Email: <input type="email" name="emailprofesor"></p>
+
+            <input type="submit" value="Agregar">
+        </form>
+    </section>
+</div>
+
+{% endblock %} 
+
+

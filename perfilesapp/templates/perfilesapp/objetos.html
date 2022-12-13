@@ -1,0 +1,108 @@
+{% extends 'perfilesapp/base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Productos
+{% endblock %}
+
+{% block about %}
+<div>
+    <p class="justify-content-center">
+    <h1 style="color:white">
+        <br>
+        <br>
+        Nuestros Productos
+        <br>
+        <br>
+    </h1>
+    </p>
+</div>
+{% endblock %}
+
+{% block servicios %}
+
+<div>
+    <section class="bg-light py-5">
+        <div class="container px-5">
+            <form action="" method="post" class="text-center">
+                {% csrf_token %}
+
+                <input type="search" name="search" placeholder="Buscar por producto" aria-label="search">
+                <button class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" type="submit"> <i
+                        class="bi bi-search"></i> Buscar</button>
+
+                {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                <a class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" href="{% url 'crear_objeto' %}"> <i
+                        class="bi bi-plus-lg"></i> Ingresar nuevo Producto</a>
+                {% endif %}
+                {% endif %}
+
+            </form>
+            <br>
+            <br>
+            <div style="text-align:right">
+                <a href="{% url 'tienda' %}"><button class="btn btn-outline-dark">Volver a Tienda</button></a>
+            </div>
+
+            <h4 class="text-center">
+                Resultados
+                {% if search %}
+                    para "{{busqueda}}":
+                {% else %}
+                    totales:
+                {% endif %}
+            </h4>
+            <br>
+            <br>
+
+
+
+
+            <div class="container">
+                <div class="row g-10">
+                    {% for tiendaobjeto in tiendaobjetos %}
+
+                    <div class="col-4">
+                        <div class="card">
+                            <div class="padre"><img class="card-img-top" src="{{tiendaobjeto.imagen.url}}" class="card-img-top"
+                                alt="no hay imagen cargada"></div>
+                            <div class="card-body">
+                                <h4 class="card-title">{{tiendaobjeto.producto}}</h4>
+                                <p class="card-text">{{tiendaobjeto.descripcion}}</p>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"> ${{tiendaobjeto.precio}}</li>
+
+                                </ul>
+                            </div>
+                        </div>
+                       
+                        {% if user.is_authenticated %}
+                            {% if user.is_staff %}
+                                <span class="col-md-auto"><a href="{% url 'editar_objeto' tiendaobjeto.id %}"><button
+                                type="button" class="btn btn-sm btn-success">Editar</button></a></span>
+                                <span class="col-md-auto"><a href="{% url 'eliminar_objeto' tiendaobjeto.id %}"><button
+                                type="button" class="btn btn-sm btn-danger">Eliminar</button></a></span>
+                            {% endif %}
+                        {% endif %}
+                        <br>
+                        <br>
+                    </div> 
+                   
+                    {% endfor %}
+
+                    
+                </div>
+            </div>
+
+            </ul>
+            <br>
+            <div style="text-align:right">
+                <a href="{% url 'tienda' %}"><button class="btn btn-outline-dark">Volver a Tienda</button></a>
+            </div>
+
+
+    </section>
+</div>
+
+{% endblock %}

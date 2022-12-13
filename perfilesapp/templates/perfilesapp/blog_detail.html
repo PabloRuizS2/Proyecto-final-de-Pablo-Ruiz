@@ -1,0 +1,104 @@
+{% extends 'perfilesapp/base.html' %}
+{% load static %} 
+
+{% block tituloPagina %} 
+Blog
+{% endblock %} 
+
+{% block about %} 
+<div>
+    <p class="justify-content-center">
+        <br>
+        <br>
+        <h1 style="color:white" >   
+         Blog
+        </h1>
+        <br>
+    </p>
+</div>
+{% endblock %} 
+
+{% block servicios %} 
+
+<div style="text-align:center" >  
+    <section class="bg-light py-5">
+        <div class="container px-5">
+            <div style="text-align:right">  
+                <a href="{% url 'blog' %}"><button class="btn btn-outline-dark">Volver a Blog</button></a>
+            </div>
+
+            <form action="" method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <p><h1>{{blog.titulo}} </h1></p>
+            <p><h4>{{blog.subtitulo}} </h4></p>
+            <p>{{user}}          -     {{blog.fecha}}</p>
+            <br>
+
+            <p align="justify">{{blog.texto}} </p>
+            
+            {% if blog.imagen %}  
+
+                <p>{{form.imagen}} </p>
+                <p><img class="card-img-top" src="{{blog.imagen.url}}" class="card-img-top"></p>
+            {% endif %}
+
+
+            {% if user.is_authenticated %}
+                {% if user.is_staff %}
+
+                    <span class="col-md-auto"><a href="{% url 'editar_blog' blog.id %}"><button type="button" class="btn btn-sm btn-success">Editar</button></a></span>
+                    <span class="col-md-auto"><a href="{% url 'eliminar_blog' blog.id %}"><button type="button" class="btn btn-sm btn-danger">Eliminar</button></a></span>
+
+                {% endif %}  
+            {% endif %}  
+    
+            </form>
+
+            <div style="text-align:right">  
+                <a href="{% url 'blog' %}"><button class="btn btn-outline-dark">Volver a Blog</button></a>
+            </div>
+
+            {% if user.is_authenticated %}
+            
+            <div class="card my-4">
+                <h5 class="card-header">Dejanos un comentario:</h5>
+                <div class="card-body">
+                    <form action="" method="post" class="text-center">
+                        {% csrf_token %}
+                        <p>Nombre: {{form.nombre}}></p>
+                        <p>Comentario: {{form.comentario}}</p>
+            
+                        <br>
+                        <br>
+                        <button class="btn btn-outline-dark" type="submit">Guardar</button>
+        
+                    </form>
+                </div>
+            </div>
+            {% endif %}  
+
+            {% for comentario in comentarios %}
+
+            <div class="col-lg-6 offset-lg-3 mt-2">
+              <div class="card p-2">
+                <div class="row">
+                    <div class="col-12">
+                        <strong>{{ comentario.nombre }}</strong> dice:
+                    </div>
+                    <div class="col-12">
+                        <p class="m-1 mt-3">{{ comentario.comentario }}</p>
+                        {{created.comentario}}
+                    </div>
+                </div>
+              </div>
+            </div>
+            
+            {% endfor %}
+
+        </div>
+    </section>
+</div>
+
+{% endblock %} 
